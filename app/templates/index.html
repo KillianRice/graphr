@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+     <script type="text/javascript">
+         function loadImg() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("image").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "/update", true);
+            xhttp.send();
+         }
+        function wrapper() {
+            setInterval(function(){loadImg()}, 1000);
+        }
+    </script>
+    <body>
+        <div id="image">
+            {% if img_data != None %}
+            {{ img_data|safe }} 
+            {% endif %}
+        </div>
+        <button type="button" onclick="loadImg()">Update</button>
+        <button type="button" onclick="wrapper()">Update Continuous</button>
+
+    </body>
+</html>
