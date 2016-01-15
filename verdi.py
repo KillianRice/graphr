@@ -1,3 +1,6 @@
+import verdi_config
+import serial
+
 class verdi_command:
     def __init__(self, nickname = 'Set Power (W)', command = b'?SP\r\n', return_bytes = 8):
         self.nickname = nickname
@@ -17,6 +20,17 @@ class verdi_command:
         else:
             return response
 
+def start_verdi_session():
+    ser = serial.Serial(**verdi_config.SESSION)
+    return ser
+
+def get_verdi_commands():
+    commands = []
+    for c in verdi_config.COMMANDS:
+        commands.append(
+                verdi_command(c,verdi_config.COMMANDS[c])
+            )
+    return commands
 
 __COMMANDS__ = [
     verdi_command('Set Power (W)', b'?SP', 8),
