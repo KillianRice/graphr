@@ -1,9 +1,9 @@
 from app import app
 from flask import render_template, flash, redirect, request
-import graphr
+from graphr import graphr
 
 def getplot():
-    f = 'data.txt'
+    f = 'data/data.txt'
     img_path = 'static/graph.svg'
     img_data = graphr.graph_data(f,img_path)
     return img_data

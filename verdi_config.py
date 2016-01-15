@@ -2,7 +2,7 @@ import serial
 
 #### Verdi serial port configuration settings ####
 SESSION = { 
-        'port'          : 'COM4',                # the port for the verdi
+        'port'          : '/dev/tty.usbserial-AL009OE0',# the port for the verdi
         'baudrate'      : '19200',               # default is 19200
         'stopbits'      : serial.STOPBITS_ONE,   # default is stopbits_one
         'parity'        : serial.PARITY_NONE,    # default is parity_none
