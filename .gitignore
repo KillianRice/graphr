@@ -5,3 +5,4 @@ data.txt
 .DS_Store
 config.py
 app/data/
+*.ipynb
