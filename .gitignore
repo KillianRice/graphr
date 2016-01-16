@@ -2,3 +2,7 @@
 __pycache__/
 app/__pycache__/
 data.txt
+.DS_Store
+config.py
+app/data/
+*.ipynb
