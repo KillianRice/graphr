@@ -1,0 +1,14 @@
+.plot {
+	width : 100%;
+	height : 300px;
+}
+
+#plots {
+	float : left;
+	width : 45%;
+}
+
+#menu {
+	float : right;
+	width : 45%;
+}

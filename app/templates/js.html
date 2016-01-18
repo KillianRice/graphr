@@ -2,33 +2,19 @@
 <head>
     <script src="static/plotly-latest.min.js"></script>
     <script type='text/javascript' src="static/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css"/>
 </head>
 <body> 
-    <div id='tester' style="width:400px;height:400px;"></div>
-    <button id='get_data'>Get some data</button>
-    <script type='text/javascript'>
-        var data = [{
-            x : [0],
-            y : [0]
-        }];
-        $( function(){
-            Plotly.newPlot('tester',data);
-            $('button#get_data').click( function(){setInterval(function(){
-                var newdata = data;
-                $.getJSON('/get_json', function() { console.log('success') })
-                .done(function(data){
-                    console.log('got data');
-                    console.log(data);
-                    var last = newdata[0]['y'].length-1;
-                    newdata[0]['x'].push(data['x']+newdata[0]['x'][last])
-                    newdata[0]['y'].push(data['y']+newdata[0]['y'][last])
-                        });
-                //var newdata = [{ x:[1,2,3,4,5],y:[1,2,3,4,5] }];
-                Plotly.newPlot('tester', newdata);
-                
-                } ,100)}
-                );   
-         });    
-    </script>
+    <div id='plots'></div>
+    <div id='menu'>
+        <h1> Hello World! </h1>
+        <div id='buttons'>
+            <button id='add_plot'>Add a plot</button>
+            <button id='get_data'>Get some data</button>
+            <button id='stop' onClick=''>Stop!</button>
+            <button id='clear'>Clear Plots</button>
+        </div>
+    </div>
+    <script src='static/plot.js'></script>
 </body>
 </html>

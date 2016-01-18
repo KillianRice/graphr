@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, flash, redirect, request, json, jsonify
 from graphr import graphr
 from numpy import random
+from datetime import datetime
 
 def getplot():
     f = 'data/data.txt'
@@ -25,9 +26,11 @@ def update():
 
 @app.route('/get_json')
 def get_json():
+    datefmt = '%Y-%m-%d %H:%M:%S.%f'
+    n = request.args.get('n', 0, type=int)
     data = {
-            'x': random.randn(),
-            'y': random.randn()
+            'x': datetime.now().strftime(datefmt),
+            'y': [ random.randn() for i in range(n) ]
         }
 
     return jsonify(**data)
