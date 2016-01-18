@@ -12,6 +12,9 @@ var allItems = [] // master list of items to get from the server
 var plotItems = {} // the items to be plotted on each plot (denoted by its plotID)
 var plotData = {} // the data for each of the items in allItems
 
+var interval = 1 //minutes
+var interval_ms = interval * 60 * 1000;
+
 $( function(){
     
 
@@ -25,7 +28,7 @@ $( function(){
                 i : allItems
             })
             .done( function(data){
-                console.log(data);
+                //console.log(data);
 
                 // Extract the new data from the server's response
                 for (i=0; i<allItems.length; i++){
@@ -43,6 +46,20 @@ $( function(){
                 }
                 
                 // loop over the plots and update them
+                
+                var now = Date.parse(data['x']);
+
+                console.log(now - Date.parse(plotData[allItems[0]]['x'][0]))
+                if ( interval_ms > now - Date.parse(plotData[allItems[0]]['x'][0])){
+                    var before = Date.parse(plotData[allItems[0]][0]);
+                } else {
+                    var before = now - interval_ms;
+                }
+
+                nowStr = now.toString()
+                beforeStr = before.toString()
+                
+                plotstyle['xaxis'] = {range : [beforeStr, nowStr]}
                 for (i=0; i<numPlots; i++) {
                     plotID = 'plotNum'+(i+1);
                     Plotly.redraw(plotID, plotstyle);
@@ -72,7 +89,7 @@ $( function(){
         var someChecked = false;
         $('.plot_item').each( function(){
             if($(this).is(":checked")) {
-                console.log($(this).attr('name'));
+                //console.log($(this).attr('name'));
                 items.push($(this).attr('name'));
                 someChecked = true;
                 $(this).prop('checked', false);
