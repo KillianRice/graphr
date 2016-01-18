@@ -30,15 +30,16 @@ $( function(){
                 // Extract the new data from the server's response
                 for (i=0; i<allItems.length; i++){
                     var last = plotData[allItems[i]]['x'].length - 1;
-                    plotData[allItems[i]]['x'].push( data['x'] )
-
-                    if (plotData[allItems[i]]['y'].length > 0)
+                    plotData[allItems[i]]['x'].push( data['x'] );
+                    plotData[allItems[i]]['y'].push( data[allItems[i]] );
+                    
+                    /* if (plotData[allItems[i]]['y'].length > 0)
                     {
                         var newpoint = plotData[allItems[i]]['y'][last] + data[allItems[i]];
                         plotData[allItems[i]]['y'].push(newpoint);
                     } else {
                         plotData[allItems[i]]['y'].push( data[allItems[i]]);
-                    }
+                    } */
                 }
                 
                 // loop over the plots and update them

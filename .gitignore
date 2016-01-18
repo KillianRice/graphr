@@ -6,3 +6,4 @@ data.txt
 config.py
 app/data/
 *.ipynb
+most_recent.txt

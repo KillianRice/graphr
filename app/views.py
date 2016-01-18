@@ -4,10 +4,11 @@ from graphr import graphr
 from numpy import random
 from datetime import datetime
 import verdi_config
+import pandas as pd
 
-c = sorted(verdi_config.COMMANDS.keys())[:6]
+#c = sorted(verdi_config.COMMANDS.keys())[:6]
 
-#c = ['a', 'b', 'c', 'd', 'e', 'f'];
+c = ['a', 'b', 'c', 'd'];
 
 def getplot():
     f = 'data/data.txt'
@@ -29,13 +30,16 @@ def update():
 
 @app.route('/get_json')
 def get_json():
+    df = pd.read_csv('most_recent.txt', sep='\t', index_col=0, parse_dates=True)
     datefmt = '%Y-%m-%d %H:%M:%S.%f'
     n = request.args.get('n', 0, type=int)
     names = request.args.getlist('i[]')
     data = {}
-    data['x'] = datetime.now().strftime(datefmt)
+    data['x'] = str(df.index[0])
+    print(data['x'])
+    print(type(data['x']))
     for name in names:
-        data[name] = random.randn()
+        data[name] = float(df[name])
 
     return jsonify(**data)
 
