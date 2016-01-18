@@ -7,13 +7,20 @@
 <body> 
     <div id='plots'></div>
     <div id='menu'>
-        <h1> Hello World! </h1>
+        <h1>Plotting Stuff 101</h1>
         <div id='buttons'>
             <button id='add_plot'>Add a plot</button>
             <button id='get_data'>Get some data</button>
             <button id='stop' onClick=''>Stop!</button>
             <button id='clear'>Clear Plots</button>
         </div>
+        {% if commands is not none %}
+        <div id='categories'>
+            {% for c in commands %}
+            <input class='plot_item' type='checkbox' name="{{ c }}" id= "{{ c }}"> {{ c }} </input><br>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
     <script src='static/plot.js'></script>
 </body>

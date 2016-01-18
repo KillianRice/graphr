@@ -6,9 +6,24 @@
 #plots {
 	float : left;
 	width : 45%;
+
 }
 
 #menu {
 	float : right;
 	width : 45%;
+}
+
+#categories {
+	height : 35%;
+	overflow-y : auto;
+}
+
+h1 {
+	font-family : sans-serif;
+	font-weight : normal;
+}
+
+body {
+	font-family : sans-serif;
 }
