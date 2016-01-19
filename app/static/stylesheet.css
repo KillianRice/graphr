@@ -5,18 +5,22 @@
 
 #plots {
 	float : left;
-	width : 45%;
+	width : 75%;
 
 }
 
 #menu {
 	float : right;
-	width : 45%;
+	width : 20%;
 }
 
 #categories {
 	height : 35%;
 	overflow-y : auto;
+}
+
+#buttons {
+    text-align : left;
 }
 
 h1 {

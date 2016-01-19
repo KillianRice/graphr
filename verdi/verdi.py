@@ -39,12 +39,21 @@ class Verdi(object):
         else:
             self.datafile = 'data.txt'
 
-    def write_verdi_header(self):
-        f = open(self.datafile, 'w')
+    def write_verdi_header(self, otherFile = None):
+        if otherFile == None:
+            f = open(self.datafile, 'w+')
+        else:
+            f = open(otherFile, 'w+')
         for c in self.commands[:-1]:
             f.write(c.nickname+'\t')
         f.write(self.commands[-1].nickname+'\n')
-        f.close()
+        
+        if otherFile == None:
+            f.close()
+            return 0
+        else:
+            return f
+            
 
     def get_verdi_data(self, mode='a'):
         """Records the responses for each command in 'commands' from the verdi on Serial port 'ser' into the file 'datafile'"""
@@ -68,4 +77,6 @@ class Verdi(object):
         f = open(self.datafile, mode)
         f.write(s)
         f.close()
+
+        return s
 

@@ -2,7 +2,7 @@ import serial
 
 #### Verdi serial port configuration settings ####
 SESSION = { 
-        'port'          : '/dev/tty.usbserial-AL009OE0',# the port for the verdi
+        'port'          : '/dev/ttyUSB0',# the port for the verdi
         'baudrate'      : '19200',               # default is 19200
         'stopbits'      : serial.STOPBITS_ONE,   # default is stopbits_one
         'parity'        : serial.PARITY_NONE,    # default is parity_none
@@ -13,11 +13,10 @@ SESSION = {
 # all commands in this list will be sent to the verdi
 # and their responses will be recorded.
 COMMANDS = {
-        'Set Power (W)'                 : b'?SP',
-        'Output Power (W)'              : b'?P',
-        'Current (A)'                   : b'?C',
-        'Current Delta (A)'             : b'?CD',
-        'Baseplate Temp (C)'            : b'?BT',
+        'Set Power (W)'                 : b'?Set Light',
+        'Output Power (W)'              : b'?Light',
+        'Current (A)'                   : b'?current',
+        'Baseplate Temp (C)'            : b'?Baseplate temp',
         'Diode 1 Current (A)'           : b'?d1c',
         'Diode 1 Photocell Voltage (V)' : b'?d1pc',
         'Diode 1 Set Temp (C)'          : b'?d1st',
@@ -39,9 +38,7 @@ COMMANDS = {
         'Vanadate Temp (C)'             : b'?vt',
         'Power Supply Hours (hr)'       : b'?psh',
         'Laser Head Hours (hr)'         : b'?HH',
-        'Vanadate Temp Servo Drive'     : b'?VD',
-        'Diode 1 Temp Servo Drive'      : b'?d1td',
-        'Diode 2 Temp Servo Drive'      : b'?d2td',
-        'Etalon Temp Servo Drive'       : b'?ed'
+        'LBO Temp (C)'                  : b'?lbot',
+        'LBO Set Temp (C)'              : b'?lbost',
     }
 

@@ -20,8 +20,7 @@ def getplot():
 @app.route('/')
 @app.route('/index', methods = ['GET','POST'])
 def index():
-    img_data = getplot()
-    return render_template('index.html',img_data=img_data)
+    return render_template('hello world')
 
 @app.route('/update')
 def update():
@@ -47,7 +46,9 @@ def get_json():
 def js():
     return render_template('js.html', commands = c)
 
-
+@app.route('/verdi')
+def verdi():
+    return render_template('verdi_monitor.html')
 
 
 
