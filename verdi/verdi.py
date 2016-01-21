@@ -38,7 +38,7 @@ class Verdi(object):
             self.datafile = datafile
         else:
             self.datafile = 'data.txt'
-        self.onStandby = verdi_command('On Standby', b'?K')
+        self.onStandby = verdi_command('On Standby', b'?L')
 
     def write_verdi_header(self, otherFile = None):
         if otherFile == None:
@@ -58,8 +58,10 @@ class Verdi(object):
 
     def get_verdi_data(self, mode='a'):
         """Records the responses for each command in 'commands' from the verdi on Serial port 'ser' into the file 'datafile'"""
+        ## check that the laser is not off or in a fault
         onStandby = float(self.onStandby.send_command(self.session))
-        if onStandby == 0:
+        
+        if onStandby == 1:
             s = ''
             
             # flush the input buffer if there are bits waiting
@@ -84,4 +86,5 @@ class Verdi(object):
             return s
         
         else:
+            
             return ''
