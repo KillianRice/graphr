@@ -12,7 +12,7 @@ var allItems = [] // master list of items to get from the server
 var plotItems = {} // the items to be plotted on each plot (denoted by its plotID)
 var plotData = {} // the data for each of the items in allItems
 
-var interval = 1 //minutes
+var interval = 5 //minutes
 var interval_ms = interval * 60 * 1000;
 
 $( function(){

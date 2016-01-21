@@ -38,34 +38,53 @@ class Verdi(object):
             self.datafile = datafile
         else:
             self.datafile = 'data.txt'
+        self.onStandby = verdi_command('On Standby', b'?L')
 
-    def write_verdi_header(self):
-        f = open(self.datafile, 'w')
+    def write_verdi_header(self, otherFile = None):
+        if otherFile == None:
+            f = open(self.datafile, 'w+')
+        else:
+            f = open(otherFile, 'w+')
         for c in self.commands[:-1]:
             f.write(c.nickname+'\t')
         f.write(self.commands[-1].nickname+'\n')
-        f.close()
+        
+        if otherFile == None:
+            f.close()
+            return 0
+        else:
+            return f
+            
 
     def get_verdi_data(self, mode='a'):
         """Records the responses for each command in 'commands' from the verdi on Serial port 'ser' into the file 'datafile'"""
-        s = ''
+        ## check that the laser is not off or in a fault
+        onStandby = float(self.onStandby.send_command(self.session))
         
-        # flush the input buffer if there are bits waiting
-        if self.session.inWaiting() > 0:
-            self.session.read(ser.inWaiting())
-        
-        # add the date and time for the current data point
-        s += str(datetime.now())+'\t'
-        
-        # loop over the commands and get their responses
-        for c in self.commands[:-1]:
-            r = float(c.send_command(self.session))
-            s += '%.8e\t'%r
-        r = float(self.commands[-1].send_command(self.session))
-        s += '%.8e\n'%r
-        
-        # write to the datafile
-        f = open(self.datafile, mode)
-        f.write(s)
-        f.close()
+        if onStandby == 1:
+            s = ''
+            
+            # flush the input buffer if there are bits waiting
+            if self.session.inWaiting() > 0:
+                self.session.read(ser.inWaiting())
+            
+            # add the date and time for the current data point
+            s += str(datetime.now())+'\t'
+            
+            # loop over the commands and get their responses
+            for c in self.commands[:-1]:
+                r = float(c.send_command(self.session))
+                s += '%.8e\t'%r
+            r = float(self.commands[-1].send_command(self.session))
+            s += '%.8e\n'%r
+            
+            # write to the datafile
+            f = open(self.datafile, mode)
+            f.write(s)
+            f.close()
 
+            return s
+        
+        else:
+            
+            return ''

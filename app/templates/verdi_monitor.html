@@ -1,0 +1,48 @@
+
+<html>
+<head>
+    <script src="static/plotly-latest.min.js"></script>
+    <script type='text/javascript' src="static/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css"/>
+</head>
+<body> 
+    <div id='plots'></div>
+    <div id='menu'>
+        <h1>Neutral Verdi Monitor</h1>
+        <div id='buttons'>
+            <button id='get_data'>Start Data Collection</button><br>
+            <button id='stop' onClick=''>Stop Data Collection</button><br>
+            <button id='clear'>Clear Plots</button>
+        </div>
+        <hr>
+        <div id='settings'>
+            Show Latest:
+            <select name='interval' size=1 id='interval'>
+                <option>1 min</option>
+                <option>5 min</option>
+                <option>10 min</option>
+                <option>30 min</option>
+                <option>60 min</option>
+                <option>All time</option>
+            </select>
+            <br>
+            Update Every: 
+            <select name='update' size=1 id='update'>
+                <option>500 ms</option>
+                <option>1 second</option>
+                <option>5 seconds</option>
+                <option>10 seconds</option>
+            </select>
+        </div>
+        {% if commands is not none %}
+        <div id='categories'>
+            {% for c in commands %}
+            <input class='plot_item' type='checkbox' name="{{ c }}" id= "{{ c }}"> {{ c }} </input><br>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <script src='static/verdi.js'></script>
+</body>
+
+</html>
