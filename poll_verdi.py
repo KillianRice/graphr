@@ -3,8 +3,8 @@ from datetime import datetime
 
 #### Define Variables ####
 datadir = '/media/KillianDrobo/Neutral/Equipment & Laser Systems/Laser System - 532nm - Lattice/pi_log'
-datefmt = '%Y.%m.%D_neutral_verdi.txt'
-fname = datadir+'/'+datetime.now().strftime(datefmt)
+datefmt = '%Y.%m.%d_neutral_verdi.txt'
+fname = datadir + '/' + datetime.now().strftime(datefmt)
 tempfile = 'app/most_recent.txt'
 today = datetime.now()
 
@@ -29,7 +29,7 @@ while True:
     # check that it is still the same day as when you started, if not
     # make a new file
     if today.day != datetime.now().day:
-        newfile = datadir+'/'datetime.now().strftime(datefmt)
+        newfile = datadir + '/' + datetime.now().strftime(datefmt)
         v.datafile = newfile
         v.write_verdi_header()
         today = datetime.now()
