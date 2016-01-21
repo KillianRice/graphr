@@ -38,6 +38,7 @@ class Verdi(object):
             self.datafile = datafile
         else:
             self.datafile = 'data.txt'
+        self.onStandby = verdi_command('On Standby', b'?K')
 
     def write_verdi_header(self, otherFile = None):
         if otherFile == None:
@@ -57,26 +58,30 @@ class Verdi(object):
 
     def get_verdi_data(self, mode='a'):
         """Records the responses for each command in 'commands' from the verdi on Serial port 'ser' into the file 'datafile'"""
-        s = ''
-        
-        # flush the input buffer if there are bits waiting
-        if self.session.inWaiting() > 0:
-            self.session.read(ser.inWaiting())
-        
-        # add the date and time for the current data point
-        s += str(datetime.now())+'\t'
-        
-        # loop over the commands and get their responses
-        for c in self.commands[:-1]:
-            r = float(c.send_command(self.session))
-            s += '%.8e\t'%r
-        r = float(self.commands[-1].send_command(self.session))
-        s += '%.8e\n'%r
-        
-        # write to the datafile
-        f = open(self.datafile, mode)
-        f.write(s)
-        f.close()
+        onStandby = float(self.onStandby.send_command(self.session))
+        if onStandby == 0:
+            s = ''
+            
+            # flush the input buffer if there are bits waiting
+            if self.session.inWaiting() > 0:
+                self.session.read(ser.inWaiting())
+            
+            # add the date and time for the current data point
+            s += str(datetime.now())+'\t'
+            
+            # loop over the commands and get their responses
+            for c in self.commands[:-1]:
+                r = float(c.send_command(self.session))
+                s += '%.8e\t'%r
+            r = float(self.commands[-1].send_command(self.session))
+            s += '%.8e\n'%r
+            
+            # write to the datafile
+            f = open(self.datafile, mode)
+            f.write(s)
+            f.close()
 
-        return s
-
+            return s
+        
+        else:
+            return ''
