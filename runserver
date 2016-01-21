@@ -2,7 +2,7 @@
 # call this script to start your flask server and data collection
 
 # change into the app directory
-cd /Users/josephwhalen/graphr/app #  should point to wherever '/app' is
+cd /home/pi/git-repo/graphr/app #  should point to wherever '/app' is
 
 # run the data collection script
 nohup python ../gen_data.py &> /dev/null & #  ignores all output, put a file in place of /dev/null to record errors etc.
