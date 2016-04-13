@@ -1,9 +1,9 @@
 var plotData = []
 var plotstyle = {
     margin : { t : 10, r : 0, b : 30 },
-    legend : { x : 1, y : 1},
+    legend : { x : 0.05, y : 0.95},
     showlegend : true,
-    width : '75%',
+    width : '85%',
 }
 var totalHeight = 90;
 var maxplots = 6;
