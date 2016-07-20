@@ -13,10 +13,10 @@ SESSION = {
 # all commands in this list will be sent to the verdi
 # and their responses will be recorded.
 COMMANDS = {
-        'Set Power (W)'                 : b'?Set Light',
-        'Output Power (W)'              : b'?Light',
-        'Current (A)'                   : b'?current',
-        'Baseplate Temp (C)'            : b'?Baseplate temp',
+        'Set Power (W)'                 : b'?SP',
+        'Output Power (W)'              : b'?P',
+        'Current (A)'                   : b'?C',
+        'Baseplate Temp (C)'            : b'?BT',
         'Diode 1 Current (A)'           : b'?d1c',
         'Diode 1 Photocell Voltage (V)' : b'?d1pc',
         'Diode 1 Set Temp (C)'          : b'?d1st',

@@ -88,3 +88,19 @@ class Verdi(object):
         else:
             
             return ''
+
+
+    def verdi_test(self):
+        passed = True
+        for c in self.commands[:-1]:
+            try:
+                print('Sending command ' + c.nickname)
+                r = float(c.send_command(self.session))
+                print(c.nickname + '\t' + '%.8e'%r)
+            except:
+                print('Failed to send command ' + c.nickname)
+                passed = False
+                break
+        return passed
+                
+                
