@@ -3,12 +3,12 @@ from datetime import datetime
 
 #### Define Variables ####
 #datadir = '/media/KillianDrobo/Neutral/Equipment & Laser Systems/Laser System - 532nm - Lattice/pi_log'
-datadir = '.'
-datefmt = '%Y.%m.%D_rydberg_verdi.txt'
+datadir = '/home/byte/graphr/data'
+datefmt = '%Y.%m.%d_rydberg_verdi.txt'
 fname = datadir+'/'+datetime.now().strftime(datefmt)
-tempfile = 'app/most_recent.txt'
+tempfile = 'most_recent.txt'
 today = datetime.now()
-
+print(fname)
 #### Initialize the Verdi Session ####
 v = verdi.Verdi(datafile = fname)
 

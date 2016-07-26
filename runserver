@@ -2,11 +2,11 @@
 # call this script to start your flask server and data collection
 
 # change into the app directory
-cd /Users/josephwhalen/graphr/app #  should point to wherever '/app' is
+cd ~/graphr/app #  should point to wherever '/app' is
 
 # run the data collection script
-nohup python ../gen_data.py &> /dev/null & #  ignores all output, put a file in place of /dev/null to record errors etc.
+python ../poll_verdi.py &>> log.txt & #  ignores all output, put a file in place of /dev/null to record errors etc.
 
 # run the server and pipe the output to a log file
-nohup python ../run.py &>> log.txt & # data will be appended to the log, make the '>>' into '>' to overwrite the log each time.
+python ../run.py &>> log.txt & # data will be appended to the log, make the '>>' into '>' to overwrite the log each time.
 
