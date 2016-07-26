@@ -8,3 +8,5 @@ app/data/
 *.ipynb
 most_recent.txt
 data/*
+*.out
+*.pid
