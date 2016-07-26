@@ -2,11 +2,8 @@
 # call this script to start your flask server and data collection
 
 # change into the app directory
-cd ~/graphr/app #  should point to wherever '/app' is
-
+cd /home/byte/graphr
 # run the data collection script
-python ../poll_verdi.py &>> log.txt & #  ignores all output, put a file in place of /dev/null to record errors etc.
-
+nohup python poll_verdi.py &
 # run the server and pipe the output to a log file
-python ../run.py &>> log.txt & # data will be appended to the log, make the '>>' into '>' to overwrite the log each time.
-
+gunicorn -D -w 4 -p server.pid -b 0.0.0.0:9999 app:app 
